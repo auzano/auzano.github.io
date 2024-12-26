@@ -20,7 +20,7 @@ body {
     animation: fadeInUp 2s forwards;
 }
 
-.image-container img {
+.image-container video {
     max-width: 100%;
     height: auto;
     filter: grayscale(100%); /* Tambahkan filter hitam putih */

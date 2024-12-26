@@ -1,100 +1,138 @@
-html {
-	position: relative;
-}
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@600&display=swap');
 
+/* Global Styles */
 body {
-	margin-bottom: 120px;
-	margin-top: 30px;
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #000000;
+    color: #000000;
 }
 
-.jumbotron {
-	height: 500px;
-	background-image: url(../img/header-bg.png);
-	background-size: cover;
-	background-attachment: fixed;
-	background-position: 0 -140px;
-	overflow: hidden;
-	position: relative;
+/* Styling for the image container */
+.image-container {
+    position: relative;
+    padding: 0;
+    background-color: #000000;
+    opacity: 0; /* Start with no visibility */
+    animation: fadeInUp 2s forwards;
 }
 
-.jumbotron img {
-	width: 200px;
-	border: 5px solid #ddd;
+.image-container img {
+    max-width: 100%;
+    height: auto;
 }
 
-.jumbotron h1, .jumbotron p {
-	color: rgba(255,255,255,.8);
-	text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+.image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+    z-index: 1;
 }
 
-hr {
-	width: 250px;
-	border-top: 3px solid #999;
+.text-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    text-align: left;
+    z-index: 2;
 }
 
-section {
-	min-height: 600px;
+.main-text {
+    font-size: 3em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.kiri, .kanan {
-	opacity: 0;
-	transform: translate(-50px, 0);
-	transition: 1.2s;
+.sub-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    margin-top: 5px;
 }
 
-.kanan {
-	transform: translate(50px, 0);
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.kiri-go, .kanan-go {
-	opacity: 1;
-	transform: translate(0, 0);
+/* Styling for the introduction section */
+.intro-section,
+.intro-section-reverse {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px; /* Space between image and text */
 }
 
-.portfolio {
-	background-color: #eee;
+/* Person 1: Image Right, Text Left */
+.intro-section {
+    justify-content: flex-end;
 }
 
-.portfolio .thumbnail {
-	opacity: 0;
-	transform: translate(0,-40px);
-	transition: .3s;
+.intro-section img {
+    max-width: 60%;
+    height: auto;
 }
 
-.portfolio .thumbnail.muncul {
-	opacity: 1;
-	transform: translate(0,0);
+.intro-section .intro-text {
+    position: absolute;
+    left: 20px;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 3em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: left;
 }
 
-.contact {
-	min-height: 800px;
+/* Person 2: Image Left, Text Right */
+.intro-section-reverse {
+    justify-content: flex-start;
 }
 
-footer {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 120px;
-	background-color: #333;
-	padding-top: 30px;
+.intro-section-reverse img {
+    order: 1; /* Place the image first */
+    max-width: 60%;
+    height: auto;
 }
 
-footer p {
-	color: #aaa;
-	font-size: 0.9em;
+.intro-section-reverse .intro-text {
+    position: absolute;
+    right: 20px;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 3em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: right;
 }
 
-footer p i {
-	color: salmon;
+/* Initially hide elements with "hidden" class */
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
-
-
-
-
-
-
-
-
-
-
+/* Make visible when in viewport */
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

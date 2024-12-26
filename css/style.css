@@ -23,6 +23,7 @@ body {
 .image-container img {
     max-width: 100%;
     height: auto;
+    filter: grayscale(100%); /* Tambahkan filter hitam putih */
 }
 
 .image-container::before {

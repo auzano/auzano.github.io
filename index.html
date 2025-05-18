@@ -1,57 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesta Pernikahan</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pesta Cinta</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
 </head>
 <body>
-    <!-- Main Section -->
-    <section>
-        <div class="image-container">
-            <video autoplay loop muted playsinline>
-                <source src="img/homage.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="text-overlay">
-                <div class="main-text">Sebuah Pesta <br> Pernikahan</div>
-                <div class="sub-text">28 Juni 2025</div>
-            </div>
-        </div>
-    </section>
-    
-<!-- Ar-Rum Verse Section -->
-<br><br>
-<section>
-    <div class="verse-section hidden">
-        <p class="verse-arabic">
-            وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً وَّرَحْمَةًۗ 
-            اِنَّ فِيْ ذٰلِكَ لَاٰيٰتٍ لِّقَوْمٍ يَّتَفَكَّرُوْنَ ۝٢١
-        </p>
-        <p class="verse-source">(QS. Ar-Rum: 21)</p>
+  <!-- Halaman 1: Cover -->
+  <section class="mobile-container cover-section">
+    <div class="overlay"></div>
+    <div class="hero-text">
+      <p class="title">Pesta Cinta</p>
+      <p class="names">auzano // aliyya</p>
     </div>
-</section>
-<br>
+  </section>
 
-
-    <!-- Introduction Section: Person 1 -->
-    <section>
-        <div class="intro-section hidden">
-            <img src="img/aliyya.jpg" alt="Farida N. Aliyya">
-            <div class="intro-text">Farida <br> N. Aliyya</div>
+ <!-- Halaman Gabungan: Mempelai -->
+<section class="mobile-container couple-section">
+    <div class="gray-background">
+      <div class="black-panel">
+        <p class="section-title">Sang Mempelai</p>
+        
+        <div class="couple-container">
+          <!-- Mempelai Perempuan -->
+          <div class="bride-container">
+            <div class="photo-frame">
+              <img src="img/bride.jpg" alt="Farida N. Aliyya" class="couple-photo" />
+            </div>
+            <p class="couple-name">Farida N. Aliyya</p>
+            <p class="couple-desc">
+              Permata Hati<br>
+              Bapak Lilik Fahruddin & Ibu Ani Rosdiany
+            </p>
+          </div>
+          
+          <!-- Pemisah & -->
+          <p class="and-symbol">//</p>
+          
+          <!-- Mempelai Pria -->
+          <div class="groom-container">
+            <div class="photo-frame">
+              <img src="img/groom.jpg" alt="Auzano Adli D. Ikram" class="couple-photo" />
+            </div>
+            <p class="couple-name">Auzano Adli D. Ikram</p>
+            <p class="couple-desc">
+              Anak Kesayangan<br>
+              Bapak Khalid Fajri & Ibu Deswita
+            </p>
+          </div>
         </div>
-    </section>
-    <br><br><br><br><br>
-    <!-- Introduction Section: Person 2 -->
-    <section>
-        <div class="intro-section-reverse hidden">
-            <img src="img/zano.jpg" alt="Auzano A. Dzil">
-            <div class="intro-text">Auzano <br> A. Dzil</div>
-        </div>
-    </section>
-    <br><br><br><br><br>
-    <script src="js/script.js"></script>
+      </div>
+    </div>
+  </section>
 </body>
 </html>

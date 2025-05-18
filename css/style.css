@@ -1,165 +1,177 @@
-/* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@600&display=swap');
-
-/* Global Styles */
-body {
-    font-family: 'Playfair Display', serif;
+@font-face {
+    font-family: 'Batusa';
+    src: url('../fonts/Batusa.otf') format('opentype');
+  }
+  
+  /* Base Styles */
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
-    text-align: center;
-    background-color: #000000;
-    color: #000000;
-}
-
-/* Styling for the image container */
-.image-container {
+    background-color: #1c1c1c;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Container */
+  .mobile-container {
+    width: 100%;
+    max-width: 500px;
+    min-height: 100vh;
+    color: white;
     position: relative;
-    padding: 0;
-    background-color: #000000;
-    opacity: 0; /* Start with no visibility */
-    animation: fadeInUp 2s forwards;
-}
-
-.image-container video {
-    max-width: 100%;
-    height: auto;
-    filter: grayscale(100%); /* Tambahkan filter hitam putih */
-}
-
-.image-container::before {
-    content: '';
+    overflow: hidden;
+  }
+  
+  /* Cover Section */
+  .cover-section {
+    background: url('../img/cover.jpg') center/cover no-repeat;
+  }
+  
+  .overlay {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 1;
-}
-
-.text-overlay {
+  }
+  
+  .hero-text {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    text-align: left;
-    z-index: 2;
-}
-
-.main-text {
-    font-size: 3em;
-    font-weight: bold;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.sub-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1em;
-    font-weight: 600;
-    color: white;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    margin-top: 5px;
-}
-
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Styling for the introduction section */
-.intro-section,
-.intro-section-reverse {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-    gap: 20px; /* Space between image and text */
-}
-
-/* Person 1: Image Right, Text Left */
-.intro-section {
-    justify-content: flex-end;
-}
-
-.intro-section img {
-    max-width: 60%;
-    height: auto;
-}
-
-.intro-section .intro-text {
-    position: absolute;
-    left: 20px;
-    color: white;
-    font-family: 'Playfair Display', serif;
-    font-size: 3em;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    text-align: left;
-}
-
-/* Person 2: Image Left, Text Right */
-.intro-section-reverse {
-    justify-content: flex-start;
-}
-
-.intro-section-reverse img {
-    order: 1; /* Place the image first */
-    max-width: 60%;
-    height: auto;
-}
-
-.intro-section-reverse .intro-text {
-    position: absolute;
-    right: 20px;
-    color: white;
-    font-family: 'Playfair Display', serif;
-    font-size: 3em;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    text-align: right;
-}
-
-/* Initially hide elements with "hidden" class */
-.hidden {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
-}
-
-/* Make visible when in viewport */
-.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Styling for Arabic Verse Section */
-.verse-section {
-    max-width: 85%;
-    margin: 0 auto;
-    padding: 30px 20px;
-    font-family: 'Playfair Display', serif;
-    color: white;
+    top: 10%;
+    width: 100%;
     text-align: center;
-}
-
-.verse-arabic {
-    font-size: 2em;
-    font-family: 'Scheherazade New', serif; /* Font Arabic kalau tersedia */
-    direction: rtl;
-    line-height: 1.8;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-}
-
-.verse-source {
-    margin-top: 15px;
-    font-size: 1em;
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-}
+    padding: 0 1rem;
+    z-index: 2;
+  }
+  
+  .title {
+    font-family: 'Batusa', cursive;
+    font-size: 15px;
+    margin-bottom: 0;
+    margin-left: -2rem;
+  }
+  
+  .names {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-left: -2rem;
+  }
+  
+  /* Couple Section */
+  .couple-section {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  
+  .gray-background {
+    background-color: #1c1c1c;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .black-panel {
+    background-color: #000;
+    width: 80%;
+    border-radius: 20px;
+    padding: 2rem 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .section-title {
+    font-family: 'Batusa', cursive;
+    font-size: 25px;
+    margin: 1rem 0 1.5rem;
+    color: white;
+  }
+  
+  .couple-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  /* PHOTO FRAMES - KEEPING YOUR ORIGINAL STYLES INTACT */
+  .bride-container, 
+  .groom-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .photo-frame {
+    position: relative;
+    width: 95%;
+    max-width: 250px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .couple-photo {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    z-index: 2;
+    position: relative;
+  }
+  
+  .bride-container .photo-frame::before {
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 98%;
+    border: 3px solid white;
+    z-index: 3;
+    opacity: 0.9;
+    transform: translateY(10px);
+  }
+  
+  .groom-container .photo-frame::before {
+    content: "";
+    position: absolute;
+    width: 98%;
+    height: 98%;
+    border: 3px solid white;
+    z-index: 3;
+    opacity: 0.9;
+    transform: translate(-6px, -6px);
+    transform-origin: center;
+  }
+  
+  /* Text Styles */
+  .couple-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin: 0 0 0.25rem;
+    color: white;
+  }
+  
+  .couple-desc {
+    font-family: 'Batusa', cursive;
+    font-size: 11px;
+    line-height: 1.4;
+    margin: 0;
+    color: #977676;
+  }
+  
+  .and-symbol {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    margin: 0 0 1rem;
+    color: white;
+  }

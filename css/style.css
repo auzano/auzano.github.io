@@ -175,3 +175,83 @@
     margin: 0 0 1rem;
     color: white;
   }
+
+ /* Event Section Styles */
+.event-date {
+    font-family: 'Batusa', cursive; /* Tanggal pakai Batusa */
+    font-size: 18px;
+    color: white;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+/* Jadwal Acara - Frame Outline */
+.schedule-frame-outline {
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 1.2rem;
+    margin: -1.5rem 1rem 6rem;
+    background-color: transparent; /* No fill */
+  }
+  
+  .schedule-item {
+    display: block; /* Ubah dari flex ke block */
+    margin-bottom: 1rem;
+    text-align: left; /* Rata kiri */
+  }
+  
+  .schedule-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .ceremony-type {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: white;
+    margin: 0 0 0.3rem 0; /* Spacing bawah untuk waktu */
+  }
+  
+  .ceremony-time {
+    font-family: 'Batusa', cursive;
+    font-size: 16px;
+    color: #977676;
+    margin: 0;
+    display: block; /* Jam di bawah */
+  }
+  
+  /* Lokasi */
+  .venue-label {
+    font-family: 'Batusa', cursive;
+    font-size: 12px; /* Ukuran kecil untuk label "Mahligai Cinta" */
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: -0.2rem;
+  }
+  
+  .venue-name {
+    font-family: 'Playfair Display', serif; /* Villa Kota pakai Playfair */
+    font-size: 40px; /* Ukuran besar */
+    color: white; /* Warna putih */
+    text-align: center;
+    margin: 0 0;
+    font-weight: 600;
+  }
+  
+  .venue-address {
+    font-family: 'Batusa', cursive; /* Alamat detail pakai Batusa */
+    font-size: 14px;
+    color: #977676;
+    text-align: center;
+    margin-top: 0rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Transportasi */
+  .transport-note {
+    font-family: 'Batusa', cursive;
+    font-size: 10px;
+    color: white; /* Warna putih untuk estimasi waktu */
+    text-align: center;
+    margin: 0rem 0;
+  }
+

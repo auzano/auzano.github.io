@@ -9,7 +9,7 @@
     overflow-x: hidden;
     margin: 0;
     padding: 0;
-    background-color: #1c1c1c;
+    background-color: #140f0f;
     font-family: 'Playfair Display', serif;
   }
   
@@ -90,9 +90,54 @@
     left: 0;
     width: 100%;
     height: 150px; /* tinggi fade, bisa disesuaikan */
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #1c1c1c 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #140f0f 100%);
     z-index: 1; /* di atas overlay (1), tapi masih di bawah hero-text (2) */
     pointer-events: none;
+  }
+  
+
+  /* Styling for Arabic Verse Section */
+.verse-section {
+    max-width: 85%;
+    margin: 0 auto;
+    padding: 30px 0px;
+    font-family: 'Playfair Display', serif;
+    color: white;
+    text-align: center;
+    margin-bottom: -5em;
+}
+
+.verse-arabic {
+    font-size: 1.1em;
+    font-family: 'Scheherazade New', serif; /* Font Arabic kalau tersedia */
+    direction: rtl;
+    line-height: 2.3;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.verse-source {
+    font-size: 1em;
+    font-family: 'Batusa', cursive;
+    font-size: 12px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    margin-top: -1em;
+}
+
+.bismillah-text {
+    font-family: 'Scheherazade New', serif;
+    font-size: 1.1em;
+    margin-bottom: -0.5em;
+    color: #e8e6e3;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  }
+  
+
+  .strip-line {
+    width: 65%;
+    height: 1px;
+    background-color: white;
+    margin: 0rem auto; /* atas-bawah 2rem, tengah horizontal */
+    margin-top: -0.5em;
   }
   
 
@@ -103,7 +148,7 @@
   }
   
   .gray-background {
-    background-color: #1c1c1c;
+    background-color: #140f0f;
     padding: 2rem 1rem;
     display: flex;
     justify-content: center;
@@ -361,7 +406,6 @@
     color: #ffffff;
   }
 
-
   
   .countdown-section::before {
     content: "";
@@ -370,7 +414,7 @@
     left: 0;
     width: 100%;
     height: 100px;
-    background: linear-gradient(to bottom, #1c1c1c 0%, #141414 50%, #080908 100%);
+    background: linear-gradient(to bottom, #140f0f 0%, #080908 100%);
     z-index: 0;
     pointer-events: none;
   }

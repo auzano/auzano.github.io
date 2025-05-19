@@ -69,6 +69,33 @@
     margin-left: -2rem;
   }
   
+  .cover-gif {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1.5;
+    pointer-events: none; /* agar tidak mengganggu klik */
+    opacity: 1; /* atur transparansi kalau perlu */
+  }
+  
+
+  
+  .cover-section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px; /* tinggi fade, bisa disesuaikan */
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #1c1c1c 100%);
+    z-index: 1; /* di atas overlay (1), tapi masih di bawah hero-text (2) */
+    pointer-events: none;
+  }
+  
+
   /* ============ COUPLE SECTION ============ */
   .couple-section {
     padding: 2rem 1rem 0.5rem;
@@ -295,3 +322,56 @@
     opacity: 0.9;
     transform: rotate(0deg);
   }
+
+  /* Countdown Styles */
+.countdown-section {
+  background-color: #080908;
+  padding: 8rem 8rem 5rem;
+  text-align: center;
+  position: relative; /* ini penting supaya ::before tetap di dalam section */
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+  
+  .countdown-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  
+  .countdown-label {
+    font-family: 'Batusa', cursive;
+    font-size: 20px;
+    color: #977676;
+    margin-bottom: 0rem;
+    letter-spacing: 1px;
+  }
+  
+  .countdown-timer {
+    font-family: 'Batusa', cursive;
+    font-size: 18px;
+    color: white;
+    line-height: 1.6;
+  }
+  
+  .countdown-timer span {
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+
+  
+  .countdown-section::before {
+    content: "";
+    position: absolute;
+    top: 0px; /* naikkan agar gradasi menyatu ke atas */
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to bottom, #1c1c1c 0%, #141414 50%, #080908 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  

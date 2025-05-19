@@ -32,7 +32,7 @@
   
   /* ============ COVER SECTION ============ */
   .cover-section {
-    background: url('../img/cover.jpg') center/cover no-repeat;
+    background: url('../img/cover2.jpg') center/cover no-repeat;
     height: 100vh;
     position: relative;
   }
@@ -514,3 +514,20 @@
   .thumb-next {
     right: 0;
   }
+
+  #vinylBtn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    z-index: 9999;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  
+  #vinylBtn:hover {
+    opacity: 1;
+  }
+  

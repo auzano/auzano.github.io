@@ -3,7 +3,7 @@
     src: url('../fonts/Batusa.otf') format('opentype');
   }
   
-  /* Base Styles */
+  /* ============ BASE STYLES ============ */
   html, body {
     max-width: 100%;
     overflow-x: hidden;
@@ -19,19 +19,22 @@
     align-items: center;
   }
   
-  /* Container */
   .mobile-container {
     width: 100%;
     max-width: 500px;
-    min-height: 100vh;
     color: white;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
   }
   
-  /* Cover Section */
+  /* ============ COVER SECTION ============ */
   .cover-section {
     background: url('../img/cover.jpg') center/cover no-repeat;
+    height: 100vh;
+    position: relative;
   }
   
   .overlay {
@@ -66,15 +69,14 @@
     margin-left: -2rem;
   }
   
-  /* Couple Section */
+  /* ============ COUPLE SECTION ============ */
   .couple-section {
-    padding: 2rem 1rem;
+    padding: 2rem 1rem 0.5rem;
     text-align: center;
   }
   
   .gray-background {
     background-color: #1c1c1c;
-    min-height: 100vh;
     padding: 2rem 1rem;
     display: flex;
     justify-content: center;
@@ -103,7 +105,7 @@
     gap: 1rem;
   }
   
-  /* PHOTO FRAMES - KEEPING YOUR ORIGINAL STYLES INTACT */
+  /* Photo Frames */
   .bride-container, 
   .groom-container {
     display: flex;
@@ -175,29 +177,40 @@
     margin: 0 0 1rem;
     color: white;
   }
-
- /* Event Section Styles */
-.event-date {
-    font-family: 'Batusa', cursive; /* Tanggal pakai Batusa */
+  
+  /* ============ EVENT SECTION ============ */
+  .event-section {
+    padding: 0;
+  }
+  
+  .event-date {
+    font-family: 'Batusa', cursive;
     font-size: 18px;
     color: white;
-    margin-bottom: 2rem;
+    margin: 0 0 -1rem;
     text-align: center;
   }
   
-/* Jadwal Acara - Frame Outline */
-.schedule-frame-outline {
+  /* Schedule */
+  .event-schedule {
+    position: relative;
+    margin-top: 0rem;
+  }
+  
+  .schedule-frame-outline {
+    position: relative;
     border: 1px solid white;
     border-radius: 15px;
     padding: 1.2rem;
-    margin: -1.5rem 1rem 6rem;
-    background-color: transparent; /* No fill */
+    margin: 1.5rem 1rem 3rem;
+    background-color: transparent;
+    z-index: 1;
   }
   
   .schedule-item {
-    display: block; /* Ubah dari flex ke block */
+    display: block;
     margin-bottom: 1rem;
-    text-align: left; /* Rata kiri */
+    text-align: left;
   }
   
   .schedule-item:last-child {
@@ -208,7 +221,7 @@
     font-family: 'Playfair Display', serif;
     font-size: 18px;
     color: white;
-    margin: 0 0 0.3rem 0; /* Spacing bawah untuk waktu */
+    margin: 0 0 0.3rem;
   }
   
   .ceremony-time {
@@ -216,42 +229,69 @@
     font-size: 16px;
     color: #977676;
     margin: 0;
-    display: block; /* Jam di bawah */
+    display: block;
   }
   
-  /* Lokasi */
+  /* Location */
   .venue-label {
     font-family: 'Batusa', cursive;
-    font-size: 12px; /* Ukuran kecil untuk label "Mahligai Cinta" */
+    font-size: 12px;
     color: #ffffff;
     text-align: center;
     margin-bottom: -0.2rem;
   }
   
   .venue-name {
-    font-family: 'Playfair Display', serif; /* Villa Kota pakai Playfair */
-    font-size: 40px; /* Ukuran besar */
-    color: white; /* Warna putih */
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    color: white;
     text-align: center;
-    margin: 0 0;
+    margin: 0;
     font-weight: 600;
   }
   
   .venue-address {
-    font-family: 'Batusa', cursive; /* Alamat detail pakai Batusa */
+    font-family: 'Batusa', cursive;
     font-size: 14px;
     color: #977676;
     text-align: center;
-    margin-top: 0rem;
-    margin-bottom: 0.5rem;
+    margin: 0 0 0.5rem;
   }
   
-  /* Transportasi */
+  /* Transport */
   .transport-note {
     font-family: 'Batusa', cursive;
     font-size: 10px;
-    color: white; /* Warna putih untuk estimasi waktu */
+    color: white;
     text-align: center;
-    margin: 0rem 0;
+    margin: 0;
   }
-
+  
+ /* ============ DECORATIONS ============ */
+.leaf-decoration {
+    position: absolute;
+    background-image: url('../img/leaf.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+    top: -6px;
+    left: 8rem;
+    z-index: 2;
+    opacity: 0.9;
+    transform: rotate(-15deg);
+  }
+  
+  .flower-decoration {
+    position: absolute;
+    background-image: url('../img/flower.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 135px;
+    top: 0.5px;
+    left: 12rem;
+    z-index: 2;
+    opacity: 0.9;
+    transform: rotate(0deg);
+  }

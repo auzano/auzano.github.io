@@ -1,3 +1,18 @@
+// Preloader
+window.addEventListener('load', function() {
+    const preloader = document.querySelector('.preloader');
+    
+    // Start fade out after 1.5s (adjust as needed)
+    setTimeout(() => {
+      preloader.style.opacity = '0';
+      
+      // Remove after fade completes
+      setTimeout(() => {
+        preloader.remove();
+      }, 800); // Match this with CSS transition duration
+    }, 1500);
+  });
+
 document.addEventListener('DOMContentLoaded', function() {
     // Countdown elements
     const daysEl = document.getElementById('days');

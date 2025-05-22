@@ -46,7 +46,7 @@
 
 
 
- <!-- Halaman Gabungan: Mempelai -->
+<!-- Halaman Gabungan: Mempelai -->
 <section class="mobile-container couple-section">
     <div class="gray-background">
       <div class="black-panel">
@@ -56,7 +56,11 @@
           <!-- Mempelai Perempuan -->
           <div class="bride-container">
             <div class="photo-frame">
-              <img src="img/bride.jpg" alt="Farida N. Aliyya" class="couple-photo" />
+              <picture>
+                <source srcset="img/bride.webp" type="image/webp">
+                <source srcset="img/bride.jpg" type="image/jpeg">
+                <img src="img/bride.jpg" alt="Farida N. Aliyya" class="couple-photo">
+              </picture>
             </div>
             <p class="couple-name">Farida N. Aliyya</p>
             <p class="couple-desc">
@@ -71,7 +75,11 @@
           <!-- Mempelai Pria -->
           <div class="groom-container">
             <div class="photo-frame">
-              <img src="img/groom.jpg" alt="Auzano Adli D. Ikram" class="couple-photo" />
+              <picture>
+                <source srcset="img/groom.webp" type="image/webp">
+                <source srcset="img/groom.jpg" type="image/jpeg">
+                <img src="img/groom.jpg" alt="Auzano Adli D. Ikram" class="couple-photo">
+              </picture>
             </div>
             <p class="couple-name">Auzano Adli D. Ikram</p>
             <p class="couple-desc">
@@ -170,7 +178,11 @@
     <div class="gallery-container">
       <!-- Main Display -->
       <div class="main-image-container">
-        <img src="img/pw1.jpg" alt="Wedding Photo 1" class="main-image" id="mainImage">
+        <picture>
+          <source srcset="img/pw1.webp" type="image/webp">
+          <source srcset="img/pw1.jpg" type="image/jpeg">
+          <img src="img/pw1.jpg" alt="Wedding Photo 1" class="main-image" id="mainImage" loading="eager">
+        </picture>
       </div>
       
       <!-- Thumbnails -->

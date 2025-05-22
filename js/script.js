@@ -55,19 +55,24 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   document.addEventListener('DOMContentLoaded', function() {
-    const mainImage = document.getElementById('mainImage');
     const thumbnailsTrack = document.getElementById('thumbnailsTrack');
     const totalPhotos = 10;
-    let currentIndex = 1; // default mulai dari foto 1
+    let currentIndex = 1;
     let slideshowInterval;
-
-    // Generate thumbnails
+  
+    // Generate thumbnails with WebP fallback
     function generateThumbs() {
       thumbnailsTrack.innerHTML = '';
       for (let i = 1; i <= totalPhotos; i++) {
         const thumb = document.createElement('div');
         thumb.className = 'thumbnail-item' + (i === 1 ? ' active' : '');
-        thumb.innerHTML = `<img src="img/pw${i}.jpg" alt="Wedding Photo ${i}" loading="lazy">`;
+        thumb.innerHTML = `
+          <picture>
+            <source srcset="img/pw${i}.webp" type="image/webp">
+            <source srcset="img/pw${i}.jpg" type="image/jpeg">
+            <img src="img/pw${i}.jpg" alt="Wedding Photo ${i}" loading="lazy">
+          </picture>
+        `;
         thumb.addEventListener('click', () => {
           updateGallery(i);
           resetSlideshow();
@@ -75,77 +80,94 @@ document.addEventListener('DOMContentLoaded', function() {
         thumbnailsTrack.appendChild(thumb);
       }
     }
-
-    // Update gallery display
+  
+    // Update gallery display with WebP support
     function updateGallery(index, isAuto = true) {
-        currentIndex = index > totalPhotos ? 1 : index < 1 ? totalPhotos : index;
-        mainImage.src = `img/pw${currentIndex}.jpg`;
+      currentIndex = index > totalPhotos ? 1 : index < 1 ? totalPhotos : index;
+      const mainImageContainer = document.querySelector('.main-image-container');
       
-        // Update active thumbnail
-        document.querySelectorAll('.thumbnail-item').forEach((t, i) => {
-          t.classList.toggle('active', i === currentIndex - 1);
-        });
+      // Update main image with WebP fallback
+      mainImageContainer.innerHTML = `
+        <picture>
+          <source srcset="img/pw${currentIndex}.webp" type="image/webp">
+          <source srcset="img/pw${currentIndex}.jpg" type="image/jpeg">
+          <img src="img/pw${currentIndex}.jpg" alt="Wedding Photo ${currentIndex}" 
+               class="main-image" id="mainImage" loading="${isAuto ? 'eager' : 'lazy'}">
+        </picture>
+      `;
       
-        // Hanya scroll ke thumbnail jika bukan dari slideshow otomatis
-        if (!isAuto) {
-          const thumbs = document.querySelectorAll('.thumbnail-item');
-          if (thumbs[currentIndex - 1]) {
-            thumbs[currentIndex - 1].scrollIntoView({
-              behavior: 'smooth',
-              block: 'nearest',
-              inline: 'nearest'
-            });
-          }
+      // Reassign mainImage reference
+      const mainImage = document.getElementById('mainImage');
+      
+      // Update active thumbnail
+      document.querySelectorAll('.thumbnail-item').forEach((t, i) => {
+        t.classList.toggle('active', i === currentIndex - 1);
+      });
+  
+      if (!isAuto) {
+        const thumbs = document.querySelectorAll('.thumbnail-item');
+        if (thumbs[currentIndex - 1]) {
+          thumbs[currentIndex - 1].scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'nearest'
+          });
         }
       }
-
-    // Slideshow auto change every 5 seconds
-    function startSlideshow() {
-        slideshowInterval = setInterval(() => {
-          updateGallery(currentIndex + 1);
-        }, 2000); // 5000 ms = 5 detik
-      }
       
-    // Reset slideshow timer (dipanggil saat user swipe atau klik tombol panah)
+      // Reattach swipe events to new image
+      attachSwipeEvents(mainImage);
+    }
+  
+    // Attach swipe events to main image
+    function attachSwipeEvents(element) {
+      let touchStartX = 0;
+      element.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+      });
+  
+      element.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+            updateGallery(currentIndex + 1, false);
+          } else {
+            updateGallery(currentIndex - 1, false);
+          }
+          resetSlideshow();
+        }
+      });
+    }
+  
+    // Start automatic slideshow
+    function startSlideshow() {
+      slideshowInterval = setInterval(() => {
+        updateGallery(currentIndex + 1, true);
+      }, 2000); // Change image every 2 seconds
+    }
+  
+    // Reset slideshow timer
     function resetSlideshow() {
       clearInterval(slideshowInterval);
       startSlideshow();
     }
-
-    // Tombol panah
+  
+    // Navigation arrows
     document.querySelector('.thumb-prev').addEventListener('click', () => {
-      updateGallery(currentIndex - 1);
+      updateGallery(currentIndex - 1, false);
       resetSlideshow();
     });
-
+  
     document.querySelector('.thumb-next').addEventListener('click', () => {
-      updateGallery(currentIndex + 1);
+      updateGallery(currentIndex + 1, false);
       resetSlideshow();
     });
-
-    // Swipe gesture untuk mobile
-    let touchStartX = 0;
-    mainImage.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
-    });
-
-    mainImage.addEventListener('touchend', (e) => {
-      const touchEndX = e.changedTouches[0].clientX;
-      const diff = touchStartX - touchEndX;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) {
-          updateGallery(currentIndex + 1);
-        } else {
-          updateGallery(currentIndex - 1);
-        }
-        resetSlideshow();
-      }
-    });
-
-    // Init
+  
+    // Initialize gallery
     generateThumbs();
-    updateGallery(1, true); // set gambar awal
-    startSlideshow(); // mulai slideshow otomatis
+    updateGallery(1, true);
+    startSlideshow();
     window.scrollTo({ top: 0, behavior: 'auto' });
   });
 

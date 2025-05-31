@@ -466,6 +466,7 @@
   .gallery-section {
     background-color: #080908;
     padding-top: 2rem;
+    padding-bottom: 4rem;
     text-align: center;
     margin-left: auto;
     max-width: 500px;
@@ -549,3 +550,29 @@
   #vinylBtn:hover {
     opacity: 1;
   }
+
+
+    /* Doa Restu */
+    .doa {
+        font-family: 'Batusa', cursive;
+        font-size: 16px;
+        color: white;
+        margin: 0 0 1rem;
+        text-align: center;
+      }
+      
+      .doa-2 {
+        font-family: 'Batusa', cursive;
+        font-size: 15px;
+        color: #977676;
+        margin: 1rem 0 1rem;
+        text-align: center;
+      }
+
+      .doa-3 {
+        font-family: 'Batusa', cursive;
+        font-size: 15px;
+        color: #ffffff;
+        margin: 0rem 0 0rem;
+        text-align: center;
+      }

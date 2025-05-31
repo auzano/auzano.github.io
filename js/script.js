@@ -54,122 +54,187 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(updateCountdown, 1000);
   });
 
+  // start of gallery 
+
+
   document.addEventListener('DOMContentLoaded', function() {
+    const mainImage = document.getElementById('mainImage');
+    const mainImageContainer = document.querySelector('.main-image-container');
     const thumbnailsTrack = document.getElementById('thumbnailsTrack');
     const totalPhotos = 10;
-    let currentIndex = 1;
+    let currentIndex = 1; // default mulai dari foto 1
     let slideshowInterval;
-  
-    // Generate thumbnails with WebP fallback
-    function generateThumbs() {
-      thumbnailsTrack.innerHTML = '';
-      for (let i = 1; i <= totalPhotos; i++) {
-        const thumb = document.createElement('div');
-        thumb.className = 'thumbnail-item' + (i === 1 ? ' active' : '');
-        thumb.innerHTML = `
-          <picture>
-            <source srcset="img/pw${i}.webp" type="image/webp">
-            <source srcset="img/pw${i}.jpg" type="image/jpeg">
-            <img src="img/pw${i}.jpg" alt="Wedding Photo ${i}" loading="lazy">
-          </picture>
-        `;
-        thumb.addEventListener('click', () => {
-          updateGallery(i);
-          resetSlideshow();
+
+    // Function to check WebP support
+    function supportsWebP() {
+        return new Promise((resolve) => {
+            const webP = new Image();
+            webP.onload = webP.onerror = function () {
+                resolve(webP.height === 2);
+            };
+            webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
         });
-        thumbnailsTrack.appendChild(thumb);
-      }
     }
-  
-    // Update gallery display with WebP support
-    function updateGallery(index, isAuto = true) {
-      currentIndex = index > totalPhotos ? 1 : index < 1 ? totalPhotos : index;
-      const mainImageContainer = document.querySelector('.main-image-container');
-      
-      // Update main image with WebP fallback
-      mainImageContainer.innerHTML = `
-        <picture>
-          <source srcset="img/pw${currentIndex}.webp" type="image/webp">
-          <source srcset="img/pw${currentIndex}.jpg" type="image/jpeg">
-          <img src="img/pw${currentIndex}.jpg" alt="Wedding Photo ${currentIndex}" 
-               class="main-image" id="mainImage" loading="${isAuto ? 'eager' : 'lazy'}">
-        </picture>
-      `;
-      
-      // Reassign mainImage reference
-      const mainImage = document.getElementById('mainImage');
-      
-      // Update active thumbnail
-      document.querySelectorAll('.thumbnail-item').forEach((t, i) => {
-        t.classList.toggle('active', i === currentIndex - 1);
-      });
-  
-      if (!isAuto) {
-        const thumbs = document.querySelectorAll('.thumbnail-item');
-        if (thumbs[currentIndex - 1]) {
-          thumbs[currentIndex - 1].scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'nearest'
-          });
+
+    // Function to get optimized image source
+    async function getImageSrc(index, isWebPSupported) {
+        const webpSrc = `img/pw${index}.webp`;
+        const jpgSrc = `img/pw${index}.jpg`;
+        
+        if (isWebPSupported) {
+            // Check if WebP file exists
+            try {
+                const response = await fetch(webpSrc, { method: 'HEAD' });
+                if (response.ok) {
+                    return webpSrc;
+                }
+            } catch (error) {
+                console.log(`WebP not available for pw${index}, using JPG`);
+            }
         }
-      }
-      
-      // Reattach swipe events to new image
-      attachSwipeEvents(mainImage);
+        return jpgSrc;
     }
-  
-    // Attach swipe events to main image
-    function attachSwipeEvents(element) {
-      let touchStartX = 0;
-      element.addEventListener('touchstart', (e) => {
+
+    // Generate thumbnails with WebP support
+    async function generateThumbs() {
+        thumbnailsTrack.innerHTML = '';
+        const isWebPSupported = await supportsWebP();
+        
+        for (let i = 1; i <= totalPhotos; i++) {
+            const thumb = document.createElement('div');
+            thumb.className = 'thumbnail-item' + (i === 1 ? ' active' : '');
+            
+            // Create picture element for thumbnail with WebP support
+            const picture = document.createElement('picture');
+            const sourceWebP = document.createElement('source');
+            const img = document.createElement('img');
+            
+            sourceWebP.srcset = `img/pw${i}.webp`;
+            sourceWebP.type = 'image/webp';
+            
+            img.src = `img/pw${i}.jpg`;
+            img.alt = `Wedding Photo ${i}`;
+            img.loading = 'lazy';
+            
+            picture.appendChild(sourceWebP);
+            picture.appendChild(img);
+            thumb.appendChild(picture);
+            
+            thumb.addEventListener('click', () => {
+                updateGallery(i);
+                resetSlideshow();
+            });
+            thumbnailsTrack.appendChild(thumb);
+        }
+    }
+
+    // Update main image with WebP support
+    async function updateMainImage(index) {
+        const isWebPSupported = await supportsWebP();
+        const imageSrc = await getImageSrc(index, isWebPSupported);
+        
+        // Create new picture element for main image
+        const picture = document.createElement('picture');
+        const sourceWebP = document.createElement('source');
+        const img = document.createElement('img');
+        
+        sourceWebP.srcset = `img/pw${index}.webp`;
+        sourceWebP.type = 'image/webp';
+        
+        img.src = `img/pw${index}.jpg`;
+        img.alt = `Wedding Photo ${index}`;
+        img.className = 'main-image';
+        img.id = 'mainImage';
+        
+        picture.appendChild(sourceWebP);
+        picture.appendChild(img);
+        
+        // Replace the current content
+        mainImageContainer.innerHTML = '';
+        mainImageContainer.appendChild(picture);
+    }
+
+    // Update gallery display
+    async function updateGallery(index, isAuto = true) {
+        currentIndex = index > totalPhotos ? 1 : index < 1 ? totalPhotos : index;
+        
+        // Update main image with WebP support
+        await updateMainImage(currentIndex);
+        
+        // Update active thumbnail
+        document.querySelectorAll('.thumbnail-item').forEach((t, i) => {
+            t.classList.toggle('active', i === currentIndex - 1);
+        });
+        
+        // Hanya scroll ke thumbnail jika bukan dari slideshow otomatis
+        if (!isAuto) {
+            const thumbs = document.querySelectorAll('.thumbnail-item');
+            if (thumbs[currentIndex - 1]) {
+                thumbs[currentIndex - 1].scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'nearest'
+                });
+            }
+        }
+    }
+
+    // Slideshow auto change every 2 seconds
+    function startSlideshow() {
+        slideshowInterval = setInterval(() => {
+            updateGallery(currentIndex + 1);
+        }, 2000); // 2000 ms = 2 seconds
+    }
+    
+    // Reset slideshow timer (dipanggil saat user swipe atau klik tombol panah)
+    function resetSlideshow() {
+        clearInterval(slideshowInterval);
+        startSlideshow();
+    }
+
+    // Tombol panah
+    document.querySelector('.thumb-prev').addEventListener('click', () => {
+        updateGallery(currentIndex - 1, false);
+        resetSlideshow();
+    });
+
+    document.querySelector('.thumb-next').addEventListener('click', () => {
+        updateGallery(currentIndex + 1, false);
+        resetSlideshow();
+    });
+
+    // Swipe gesture untuk mobile
+    let touchStartX = 0;
+    mainImageContainer.addEventListener('touchstart', (e) => {
         touchStartX = e.touches[0].clientX;
-      });
-  
-      element.addEventListener('touchend', (e) => {
+    });
+
+    mainImageContainer.addEventListener('touchend', (e) => {
         const touchEndX = e.changedTouches[0].clientX;
         const diff = touchStartX - touchEndX;
         if (Math.abs(diff) > 50) {
-          if (diff > 0) {
-            updateGallery(currentIndex + 1, false);
-          } else {
-            updateGallery(currentIndex - 1, false);
-          }
-          resetSlideshow();
+            if (diff > 0) {
+                updateGallery(currentIndex + 1, false);
+            } else {
+                updateGallery(currentIndex - 1, false);
+            }
+            resetSlideshow();
         }
-      });
-    }
-  
-    // Start automatic slideshow
-    function startSlideshow() {
-      slideshowInterval = setInterval(() => {
-        updateGallery(currentIndex + 1, true);
-      }, 2000); // Change image every 2 seconds
-    }
-  
-    // Reset slideshow timer
-    function resetSlideshow() {
-      clearInterval(slideshowInterval);
-      startSlideshow();
-    }
-  
-    // Navigation arrows
-    document.querySelector('.thumb-prev').addEventListener('click', () => {
-      updateGallery(currentIndex - 1, false);
-      resetSlideshow();
     });
-  
-    document.querySelector('.thumb-next').addEventListener('click', () => {
-      updateGallery(currentIndex + 1, false);
-      resetSlideshow();
-    });
-  
+
     // Initialize gallery
-    generateThumbs();
-    updateGallery(1, true);
-    startSlideshow();
-    window.scrollTo({ top: 0, behavior: 'auto' });
-  });
+    async function initGallery() {
+        await generateThumbs();
+        await updateGallery(1, true); // set gambar awal
+        startSlideshow(); // mulai slideshow otomatis
+        window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+
+    // Start the gallery
+    initGallery();
+});
+
+  // end of gallery 
 
   document.addEventListener('DOMContentLoaded', function () {
     const audio = document.getElementById('bgMusic');

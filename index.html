@@ -1,199 +1,160 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pesta Cinta</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pesta Cinta</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap" rel="stylesheet">
 </head>
 <body>
- 
     <div class="preloader">
         <div class="loader-text">A Moment...</div>
-      </div>
-
+    </div>
 
     <audio id="bgMusic" loop>
         <source src="audio/bgm.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
-      </audio>
-      
-      <img src="img/vinyl4.png" id="vinylBtn" />
-      
-
-<!-- Halaman 1: Cover -->
-<section class="mobile-container cover-section">
-    <div class="overlay"></div>
+    </audio>
     
-    <!-- Modern image format with fallback -->
-    <picture>
-      <source srcset="img/cover_raw.webp" type="image/webp">
-      <source srcset="img/cover_raw.jpg" type="image/jpeg"> 
-      <img src="img/cover_raw.jpg" alt="Cover Background" class="cover-bg">
-    </picture>
+    <img src="img/vinyl4.png" id="vinylBtn" />
     
-    <img src="img/blink.gif" class="cover-gif" alt="Blink Effect">
-    
-    <div class="hero-text">
-      <p class="title">Pesta Cinta</p>
-      <p class="names">auzano // aliyya</p>
-    </div>
-  </section>
-  
-
-
-
-
-<!-- Halaman Gabungan: Mempelai -->
-<section class="mobile-container couple-section">
-    <div class="gray-background">
-      <div class="black-panel">
-        <p class="section-title">Sang Mempelai</p>
+    <!-- Halaman 1: Cover -->
+    <section class="mobile-container cover-section">
+        <div class="overlay"></div>
         
-        <div class="couple-container">
-          <!-- Mempelai Perempuan -->
-          <div class="bride-container">
-            <div class="photo-frame">
-              <picture>
-                <source srcset="img/bride.webp" type="image/webp">
-                <source srcset="img/bride.jpg" type="image/jpeg">
-                <img src="img/bride.jpg" alt="Farida N. Aliyya" class="couple-photo">
-              </picture>
+        <!-- Modern image format with fallback -->
+        <picture>
+            <source srcset="img/cover_raw.webp" type="image/webp">
+            <source srcset="img/cover_raw.jpg" type="image/jpeg"> 
+            <img src="img/cover_raw.jpg" alt="Cover Background" class="cover-bg">
+        </picture>
+        
+        <img src="img/blink.gif" class="cover-gif" alt="Blink Effect">
+        
+        <div class="hero-text">
+            <p class="title">Pesta Cinta</p>
+            <p class="names">auzano // aliyya</p>
+        </div>
+    </section>
+    
+    <!-- Halaman Gabungan: Mempelai -->
+    <section class="mobile-container couple-section">
+        <div class="gray-background">
+            <div class="black-panel">
+                <p class="section-title">Sang Mempelai</p>
+                
+                <div class="couple-container">
+                    <!-- Mempelai Perempuan -->
+                    <div class="bride-container">
+                        <div class="photo-frame">
+                            <picture>
+                                <source srcset="img/bride.webp" type="image/webp">
+                                <source srcset="img/bride.jpg" type="image/jpeg">
+                                <img src="img/bride.jpg" alt="Farida N. Aliyya" class="couple-photo">
+                            </picture>
+                        </div>
+                        <p class="couple-name">Farida N. Aliyya</p>
+                        <p class="couple-desc">
+                            Permata Hati<br>
+                            Bapak Lilik Fahruddin & Ibu Ani Rosdiany
+                        </p>
+                    </div>
+                    
+                    <!-- Pemisah & -->
+                    <p class="and-symbol">//</p>
+                    
+                    <!-- Mempelai Pria -->
+                    <div class="groom-container">
+                        <div class="photo-frame">
+                            <picture>
+                                <source srcset="img/groom.webp" type="image/webp">
+                                <source srcset="img/groom.jpg" type="image/jpeg">
+                                <img src="img/groom.jpg" alt="Auzano Adli D. Ikram" class="couple-photo">
+                            </picture>
+                        </div>
+                        <p class="couple-name">Auzano Adli D. Ikram</p>
+                        <p class="couple-desc">
+                            Anak Kesayangan<br>
+                            Bapak Khalid Fajri & Ibu Deswita
+                        </p>
+                    </div>
+                </div>
             </div>
-            <p class="couple-name">Farida N. Aliyya</p>
-            <p class="couple-desc">
-              Permata Hati<br>
-              Bapak Lilik Fahruddin & Ibu Ani Rosdiany
-            </p>
-          </div>
-          
-          <!-- Pemisah & -->
-          <p class="and-symbol">//</p>
-          
-          <!-- Mempelai Pria -->
-          <div class="groom-container">
-            <div class="photo-frame">
-              <picture>
-                <source srcset="img/groom.webp" type="image/webp">
-                <source srcset="img/groom.jpg" type="image/jpeg">
-                <img src="img/groom.jpg" alt="Auzano Adli D. Ikram" class="couple-photo">
-              </picture>
+        </div>
+    </section>
+
+    <!-- Halaman 3: Info Acara -->
+    <section class="mobile-container event-section">
+        <div class="gray-background">
+            <div class="black-panel">
+                <p class="event-date">Sabtu, 28 Juni 2025</p>
+                
+                <div class="event-schedule">
+                    <div class="leaf-decoration"></div> <!-- Ornamen daun -->
+                    <div class="flower-decoration"></div> <!-- Ornamen bunga baru -->
+                    <div class="schedule-frame-outline">
+                        <div class="schedule-item">
+                            <p class="ceremony-type">Akad</p>
+                            <p class="ceremony-time">07.56 WIB</p>
+                        </div>
+                                            
+                        <div class="schedule-item">
+                            <p class="ceremony-type">Resepsi</p>
+                            <p class="ceremony-time">11.03 s.d. 13.57 WIB</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-location">
+                    <p class="venue-label">Mahligai Cinta</p>
+                    <p class="venue-name">Villa Kota</p>
+                    <p class="venue-address">
+                        Ciwaringin, Bogor Tengah,<br>
+                        Kota Bogor, Jawa Barat 16124
+                    </p>
+                </div>
+                
+                <div class="event-transport">
+                    <p class="transport-note">5 Menit dari Stasiun Bogor</p>
+                    <p class="transport-note">9 Menit dari Exit Toll Bogor Kedung Halang</p>
+                </div>
             </div>
-            <p class="couple-name">Auzano Adli D. Ikram</p>
-            <p class="couple-desc">
-              Anak Kesayangan<br>
-              Bapak Khalid Fajri & Ibu Deswita
-            </p>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-
-  
-
-<!-- Halaman 3: Info Acara -->
-<section class="mobile-container event-section">
-    <div class="gray-background">
-      <div class="black-panel">
-        <p class="event-date">Sabtu, 28 Juni 2025</p>
-        
-        <div class="event-schedule">
-            <div class="leaf-decoration"></div> <!-- Ornamen daun -->
-            <div class="flower-decoration"></div> <!-- Ornamen bunga baru -->
-            <div class="schedule-frame-outline">
-              <div class="schedule-item">
-                <p class="ceremony-type">Akad</p>
-                <p class="ceremony-time">07.56 WIB</p>
-              </div>
-                            
-              <div class="schedule-item">
-                <p class="ceremony-type">Resepsi</p>
-                <p class="ceremony-time">11.03 s.d. 13.57 WIB</p>
-              </div>
+    <!-- Countdown Section -->
+    <section class="countdown-section">
+        <div class="countdown-container">
+            <img src="img/blooming2.gif" alt="Blooming Animation" class="blooming-gif">
+            <p class="countdown-label">Menghitung Hari</p>
+            <div class="countdown-timer">
+                <span id="days">00</span> hari, 
+                <span id="hours">00</span> jam, 
+                <span id="minutes">00</span> menit, 
+                <span id="seconds">00</span> detik.
             </div>
-          </div>
-        
-        <div class="event-location">
-          <p class="venue-label">Mahligai Cinta</p>
-          <p class="venue-name">Villa Kota</p>
-          <p class="venue-address">
-            Ciwaringin, Bogor Tengah,<br>
-            Kota Bogor, Jawa Barat 16124
-          </p>
         </div>
-        
-        <div class="event-transport">
-          <p class="transport-note">5 Menit dari Stasiun Bogor</p>
-          <p class="transport-note">9 Menit dari Exit Toll Bogor Kedung Halang</p>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="gallery-container">
+            <!-- Main Display -->
+            <div class="main-image-container">
+                <picture>
+                    <source srcset="img/pw1.webp" type="image/webp">
+                    <img src="img/pw1.jpg" alt="Wedding Photo 1" class="main-image" id="mainImage">
+                </picture>
+            </div>
+            
+            <!-- Thumbnails -->
+            <div class="thumbnails-track" id="thumbnailsTrack">
+                <!-- Thumbnails will be generated by JavaScript -->
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-
-
-
-<!-- Countdown Section -->
-<section class="countdown-section">
-    <div class="countdown-container">
-      <img src="img/blooming2.gif" alt="Blooming Animation" class="blooming-gif">
-      <p class="countdown-label">Menghitung Hari</p>
-      <div class="countdown-timer">
-        <span id="days">00</span> hari, 
-        <span id="hours">00</span> jam, 
-        <span id="minutes">00</span> menit, 
-        <span id="seconds">00</span> detik.
-      </div>
-    </div>
-
-    
-   
-
-
-    <!-- Ar-Rum Verse Section -->
-    <!--
-    <div class="strip-line"></div>
-    <div class="verse-section hidden">      
-      <div class="verse-box">
-
-        <p class="bismillah-text">بِسْمِ ٱللّٰهِ ٱلرَّحْمٰنِ ٱلرَّحِيمِ</p>
-
-        <p class="verse-arabic">
-          وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً وَّرَحْمَةًۗ 
-          اِنَّ فِيْ ذٰلِكَ لَاٰيٰتٍ لِّقَوْمٍ يَّتَفَكَّرُوْنَ ۝٢١
-        </p>
-        <p class="verse-source">(QS. Ar-Rum: 21)</p>
-      </div>
-    </div>
-
-  </section>-->
-
-
-<!-- Gallery Section -->
-<section class="gallery-section">
-    <div class="gallery-container">
-        <!-- Main Display -->
-        <div class="main-image-container">
-            <picture>
-                <source srcset="img/pw1.webp" type="image/webp">
-                <img src="img/pw1.jpg" alt="Wedding Photo 1" class="main-image" id="mainImage">
-            </picture>
-        </div>
-        
-        <!-- Thumbnails -->
-        <div class="thumbnails-track" id="thumbnailsTrack">
-            <!-- Thumbnails will be generated by JavaScript -->
-        </div>
-    </div>
-</section>
-
-
-  <script src="js/script.js"></script>
-
+    <script src="js/script.js"></script>
 </body>
 </html>
-

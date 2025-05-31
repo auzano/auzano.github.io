@@ -28,10 +28,11 @@
     display: flex;
     flex-direction: column;
     gap: 0rem;
+    margin-left: auto;
   }
   
   /* Minimalist Preloader */
-.preloader {
+  .preloader {
     position: fixed;
     top: 0;
     left: 0;
@@ -68,10 +69,9 @@
     0%, 100% { opacity: 0.3; }
     50% { opacity: 1; }
   }
-
-
- /* ============ COVER SECTION ============ */
-.cover-section {
+  
+  /* ============ COVER SECTION ============ */
+  .cover-section {
     height: 100vh;
     position: relative;
     overflow: hidden;
@@ -142,9 +142,8 @@
     pointer-events: none;
   }
   
-
   /* Styling for Arabic Verse Section */
-.verse-section {
+  .verse-section {
     max-width: 85%;
     margin: 0 auto;
     padding: 30px 0px;
@@ -152,25 +151,25 @@
     color: white;
     text-align: center;
     margin-bottom: -5em;
-}
-
-.verse-arabic {
+  }
+  
+  .verse-arabic {
     font-size: 1.1em;
     font-family: 'Scheherazade New', serif; /* Font Arabic kalau tersedia */
     direction: rtl;
     line-height: 2.3;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-}
-
-.verse-source {
+  }
+  
+  .verse-source {
     font-size: 1em;
     font-family: 'Batusa', cursive;
     font-size: 12px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
     margin-top: -1em;
-}
-
-.bismillah-text {
+  }
+  
+  .bismillah-text {
     font-family: 'Scheherazade New', serif;
     font-size: 1.1em;
     margin-bottom: -0.5em;
@@ -178,7 +177,6 @@
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
   }
   
-
   .strip-line {
     width: 65%;
     height: 1px;
@@ -187,10 +185,8 @@
     margin-top: -0.5em;
   }
   
-
   /* ============ COUPLE SECTION ============ */
   .couple-section {
-    padding: 2rem 1rem 0.5rem;
     text-align: center;
   }
   
@@ -212,7 +208,7 @@
   
   .section-title {
     font-family: 'Batusa', cursive;
-    font-size: 25px;
+    font-size: 30px;
     margin: 1rem 0 1.5rem;
     color: white;
   }
@@ -277,14 +273,14 @@
   /* Text Styles */
   .couple-name {
     font-family: 'Playfair Display', serif;
-    font-size: 18px;
+    font-size: 22px;
     margin: 0 0 0.25rem;
     color: white;
   }
   
   .couple-desc {
     font-family: 'Batusa', cursive;
-    font-size: 11px;
+    font-size: 12.5px;
     line-height: 1.4;
     margin: 0;
     color: #977676;
@@ -386,8 +382,8 @@
     margin: 0;
   }
   
- /* ============ DECORATIONS ============ */
-.leaf-decoration {
+  /* ============ DECORATIONS ============ */
+  .leaf-decoration {
     position: absolute;
     background-image: url('../img/leaf.png');
     background-size: contain;
@@ -414,24 +410,25 @@
     opacity: 0.9;
     transform: rotate(0deg);
   }
-
-  /* Countdown Styles */
-.countdown-section {
-  background-color: #080908;
-  padding: 8rem 8rem 5rem;
-  text-align: center;
-  position: relative; /* ini penting supaya ::before tetap di dalam section */
-  overflow: hidden;
-  margin-bottom: 0;
-}
-
   
-  .countdown-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 1rem;
+  /* Countdown Styles */
+  .countdown-section {
+    max-width: 500px;
+    background-color: #080908;
+    text-align: center;
+    position: relative; /* ini penting supaya ::before tetap di dalam section */
+    overflow: hidden;
+    margin-bottom: 0;
+    margin-left: auto;
+    width: 100%;
   }
   
+  .countdown-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding-top: 6rem;
+    margin-left: auto;
+  }
   
   .countdown-label {
     font-family: 'Batusa', cursive;
@@ -452,7 +449,6 @@
     font-weight: 600;
     color: #ffffff;
   }
-
   
   .countdown-section::before {
     content: "";
@@ -466,36 +462,38 @@
     pointer-events: none;
   }
   
-
-/* Gallery Styles */
-.gallery-section {
+  /* Gallery Styles */
+  .gallery-section {
     background-color: #080908;
-    padding: 2rem 1rem;
+    padding-top: 2rem;
     text-align: center;
-}
-
-.gallery-container {
+    margin-left: auto;
+    max-width: 500px;
+  }
+  
+  .gallery-container {
     max-width: 500px;
     margin: 0 auto;
-}
-
-.main-image-container {
+    margin-left: auto;
+  }
+  
+  .main-image-container {
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     max-height: 400px;
-}
-
-.main-image {
+  }
+  
+  .main-image {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
     transition: opacity 0.5s ease;
-}
-
-.thumbnails-track {
+  }
+  
+  .thumbnails-track {
     display: flex;
     gap: 10px;
     overflow-x: auto;
@@ -503,13 +501,13 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
     padding: 10px 0;
-}
-
-.thumbnails-track::-webkit-scrollbar {
+  }
+  
+  .thumbnails-track::-webkit-scrollbar {
     display: none;
-}
-
-.thumbnail-item {
+  }
+  
+  .thumbnail-item {
     flex: 0 0 100px;
     height: 80px;
     cursor: pointer;
@@ -517,26 +515,25 @@
     transition: all 0.3s ease;
     border-radius: 4px;
     overflow: hidden;
-}
-
-.thumbnail-item:hover, .thumbnail-item.active {
+  }
+  
+  .thumbnail-item:hover, .thumbnail-item.active {
     opacity: 1;
     transform: scale(1.05);
-}
-
-.thumbnail-item.active {
+  }
+  
+  .thumbnail-item.active {
     border: 3px solid white;
     box-shadow: 0 0 10px rgba(255,255,255,0.5);
-}
-
-.thumbnail-item img {
+  }
+  
+  .thumbnail-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
-}
+  }
   
-
   #vinylBtn {
     position: fixed;
     bottom: 20px;

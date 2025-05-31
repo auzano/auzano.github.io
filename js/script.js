@@ -12,8 +12,9 @@ window.addEventListener('load', function() {
       }, 800); // Match this with CSS transition duration
     }, 1500);
   });
-
-document.addEventListener('DOMContentLoaded', function() {
+  
+  // Countdown Timer
+  document.addEventListener('DOMContentLoaded', function() {
     // Countdown elements
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
@@ -53,9 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCountdown();
     setInterval(updateCountdown, 1000);
   });
-
-  // start of gallery 
-
+  
+  // Gallery Functionality
   document.addEventListener('DOMContentLoaded', function() {
     const mainImageContainer = document.querySelector('.main-image-container');
     const thumbnailsTrack = document.getElementById('thumbnailsTrack');
@@ -63,144 +63,144 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 1;
     let slideshowInterval;
     let isWebPSupported = false;
-
+  
     // Function to check WebP support
     async function checkWebPSupport() {
-        isWebPSupported = await new Promise((resolve) => {
-            const webP = new Image();
-            webP.onload = webP.onerror = function() {
-                resolve(webP.height === 2);
-            };
-            webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
-        });
+      isWebPSupported = await new Promise((resolve) => {
+        const webP = new Image();
+        webP.onload = webP.onerror = function() {
+          resolve(webP.height === 2);
+        };
+        webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+      });
     }
-
+  
     // Generate thumbnails
     async function generateThumbs() {
-        await checkWebPSupport();
-        thumbnailsTrack.innerHTML = '';
+      await checkWebPSupport();
+      thumbnailsTrack.innerHTML = '';
+      
+      for (let i = 1; i <= totalPhotos; i++) {
+        const thumb = document.createElement('div');
+        thumb.className = 'thumbnail-item' + (i === 1 ? ' active' : '');
         
-        for (let i = 1; i <= totalPhotos; i++) {
-            const thumb = document.createElement('div');
-            thumb.className = 'thumbnail-item' + (i === 1 ? ' active' : '');
-            
-            const picture = document.createElement('picture');
-            if (isWebPSupported) {
-                const sourceWebP = document.createElement('source');
-                sourceWebP.srcset = `img/pw${i}.webp`;
-                sourceWebP.type = 'image/webp';
-                picture.appendChild(sourceWebP);
-            }
-            
-            const img = document.createElement('img');
-            img.src = `img/pw${i}.jpg`;
-            img.alt = `Wedding Photo ${i}`;
-            img.loading = 'lazy';
-            picture.appendChild(img);
-            
-            thumb.appendChild(picture);
-            thumb.addEventListener('click', () => {
-                updateGallery(i);
-                resetSlideshow();
-            });
-            thumbnailsTrack.appendChild(thumb);
-        }
-    }
-
-    // Update main image
-    async function updateMainImage(index) {
         const picture = document.createElement('picture');
         if (isWebPSupported) {
-            const sourceWebP = document.createElement('source');
-            sourceWebP.srcset = `img/pw${index}.webp`;
-            sourceWebP.type = 'image/webp';
-            picture.appendChild(sourceWebP);
+          const sourceWebP = document.createElement('source');
+          sourceWebP.srcset = `img/pw${i}.webp`;
+          sourceWebP.type = 'image/webp';
+          picture.appendChild(sourceWebP);
         }
         
         const img = document.createElement('img');
-        img.src = `img/pw${index}.jpg`;
-        img.alt = `Wedding Photo ${index}`;
-        img.className = 'main-image';
-        
-        // Add fade transition
-        img.style.opacity = '0';
+        img.src = `img/pw${i}.jpg`;
+        img.alt = `Wedding Photo ${i}`;
+        img.loading = 'lazy';
         picture.appendChild(img);
-        mainImageContainer.innerHTML = '';
-        mainImageContainer.appendChild(picture);
         
-        // Trigger fade in
-        setTimeout(() => {
-            img.style.opacity = '1';
-        }, 10);
+        thumb.appendChild(picture);
+        thumb.addEventListener('click', () => {
+          updateGallery(i);
+          resetSlideshow();
+        });
+        thumbnailsTrack.appendChild(thumb);
+      }
     }
-
+  
+    // Update main image
+    async function updateMainImage(index) {
+      const picture = document.createElement('picture');
+      if (isWebPSupported) {
+        const sourceWebP = document.createElement('source');
+        sourceWebP.srcset = `img/pw${index}.webp`;
+        sourceWebP.type = 'image/webp';
+        picture.appendChild(sourceWebP);
+      }
+      
+      const img = document.createElement('img');
+      img.src = `img/pw${index}.jpg`;
+      img.alt = `Wedding Photo ${index}`;
+      img.className = 'main-image';
+      
+      // Add fade transition
+      img.style.opacity = '0';
+      picture.appendChild(img);
+      mainImageContainer.innerHTML = '';
+      mainImageContainer.appendChild(picture);
+      
+      // Trigger fade in
+      setTimeout(() => {
+        img.style.opacity = '1';
+      }, 10);
+    }
+  
     // Update gallery
     async function updateGallery(index) {
-        currentIndex = index > totalPhotos ? 1 : index < 1 ? totalPhotos : index;
-        await updateMainImage(currentIndex);
+      currentIndex = index > totalPhotos ? 1 : index < 1 ? totalPhotos : index;
+      await updateMainImage(currentIndex);
+      
+      // Update active thumbnail
+      document.querySelectorAll('.thumbnail-item').forEach((t, i) => {
+        t.classList.toggle('active', i === currentIndex - 1);
+      });
+      
+      // Smooth scroll to active thumbnail (optional)
+      const activeThumb = document.querySelector('.thumbnail-item.active');
+      if (activeThumb) {
+        const containerWidth = thumbnailsTrack.offsetWidth;
+        const thumbPos = activeThumb.offsetLeft;
+        const thumbWidth = activeThumb.offsetWidth;
+        const scrollPos = thumbPos - (containerWidth / 2) + (thumbWidth / 2);
         
-        // Update active thumbnail
-        document.querySelectorAll('.thumbnail-item').forEach((t, i) => {
-            t.classList.toggle('active', i === currentIndex - 1);
+        thumbnailsTrack.scrollTo({
+          left: scrollPos,
+          behavior: 'smooth'
         });
-        
-        // Smooth scroll to active thumbnail (optional)
-        const activeThumb = document.querySelector('.thumbnail-item.active');
-        if (activeThumb) {
-            const containerWidth = thumbnailsTrack.offsetWidth;
-            const thumbPos = activeThumb.offsetLeft;
-            const thumbWidth = activeThumb.offsetWidth;
-            const scrollPos = thumbPos - (containerWidth / 2) + (thumbWidth / 2);
-            
-            thumbnailsTrack.scrollTo({
-                left: scrollPos,
-                behavior: 'smooth'
-            });
-        }
+      }
     }
-
+  
     // Slideshow auto change
     function startSlideshow() {
-        slideshowInterval = setInterval(() => {
-            updateGallery(currentIndex + 1);
-        }, 3000);
+      slideshowInterval = setInterval(() => {
+        updateGallery(currentIndex + 1);
+      }, 3000);
     }
     
     function resetSlideshow() {
-        clearInterval(slideshowInterval);
-        startSlideshow();
+      clearInterval(slideshowInterval);
+      startSlideshow();
     }
-
+  
     // Swipe gesture for mobile
     let touchStartX = 0;
     mainImageContainer.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
+      touchStartX = e.touches[0].clientX;
     });
-
+  
     mainImageContainer.addEventListener('touchend', (e) => {
-        const touchEndX = e.changedTouches[0].clientX;
-        const diff = touchStartX - touchEndX;
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) {
-                updateGallery(currentIndex + 1);
-            } else {
-                updateGallery(currentIndex - 1);
-            }
-            resetSlideshow();
+      const touchEndX = e.changedTouches[0].clientX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          updateGallery(currentIndex + 1);
+        } else {
+          updateGallery(currentIndex - 1);
         }
+        resetSlideshow();
+      }
     });
-
+  
     // Initialize gallery
     async function initGallery() {
-        await generateThumbs();
-        await updateGallery(1);
-        startSlideshow();
+      await generateThumbs();
+      await updateGallery(1);
+      startSlideshow();
     }
-
+  
     initGallery();
-});
-  // end of gallery 
-
+  });
+  
+  // Audio Player
   document.addEventListener('DOMContentLoaded', function () {
     const audio = document.getElementById('bgMusic');
     const vinyl = document.getElementById('vinylBtn');
@@ -242,4 +242,3 @@ document.addEventListener('DOMContentLoaded', function() {
       isPlaying = !isPlaying;
     });
   });
-  

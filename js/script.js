@@ -59,7 +59,7 @@ window.addEventListener('load', function() {
   document.addEventListener('DOMContentLoaded', function() {
     const mainImageContainer = document.querySelector('.main-image-container');
     const thumbnailsTrack = document.getElementById('thumbnailsTrack');
-    const totalPhotos = 10;
+    const totalPhotos = 9;
     let currentIndex = 1;
     let slideshowInterval;
     let isWebPSupported = false;
@@ -205,40 +205,94 @@ window.addEventListener('load', function() {
     const audio = document.getElementById('bgMusic');
     const vinyl = document.getElementById('vinylBtn');
     let isPlaying = false;
-  
+    
+    // Optimasi preload audio
+    audio.preload = 'auto';
+    audio.load(); // Paksa browser mulai mengunduh audio
+    
     // Ganti ke vinyl diam (jika ada)
     function setVinylPaused() {
-      vinyl.src = 'img/vinyl4.png'; // Ganti ke gambar diam
+      vinyl.src = 'img/vinyl4.png';
     }
   
     function setVinylPlaying() {
-      vinyl.src = 'img/vinyl4.gif'; // Ganti ke gif muter
+      vinyl.src = 'img/vinyl4.gif';
     }
   
-    // Play saat mulai scroll (hanya sekali)
-    let hasInteracted = false;
-    window.addEventListener('scroll', function () {
-      if (!hasInteracted) {
-        audio.play().then(() => {
+    // Fungsi untuk mencoba memutar audio
+    function tryPlayAudio() {
+      audio.play()
+        .then(() => {
           isPlaying = true;
           setVinylPlaying();
-          hasInteracted = true;
-        }).catch(() => {
-          // autoplay mungkin diblokir, user harus klik
+          window.removeEventListener('scroll', handleFirstScroll); // Hapus listener setelah berhasil
+        })
+        .catch(error => {
+          console.log('Autoplay blocked, waiting for user interaction:', error);
         });
+    }
+  
+    // Handler untuk scroll pertama
+    function handleFirstScroll() {
+      if (!isPlaying) {
+        tryPlayAudio();
       }
-    });
+    }
+  
+    // Coba autoplay saat audio sudah siap
+    audio.addEventListener('canplaythrough', tryPlayAudio);
+    
+    // Setup scroll listener dengan throttling
+    let scrollTimer;
+    window.addEventListener('scroll', function() {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(handleFirstScroll, 200); // Tunggu 200ms setelah scroll berhenti
+    }, { passive: true });
   
     // Toggle play/pause saat vinyl diklik
-    vinyl.addEventListener('click', function () {
+    vinyl.addEventListener('click', function() {
       if (isPlaying) {
         audio.pause();
         setVinylPaused();
       } else {
-        audio.play().then(() => {
-          setVinylPlaying();
-        });
+        audio.play()
+          .then(() => setVinylPlaying())
+          .catch(error => console.log('Play failed:', error));
       }
       isPlaying = !isPlaying;
     });
+  
+    // Fallback: coba lagi setelah 3 detik jika belum berhasil
+    setTimeout(tryPlayAudio, 3000);
   });
+
+
+  // Scroll Animation Simple
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollElements = document.querySelectorAll('.scroll-animate');
+    
+    const elementInView = (el) => {
+        const elementTop = el.getBoundingClientRect().top;
+        return elementTop <= window.innerHeight * 0.8;
+    };
+    
+    const displayScrollElement = (element) => {
+        element.classList.add('visible');
+    };
+    
+    const handleScrollAnimation = () => {
+        scrollElements.forEach((el) => {
+            if (elementInView(el)) {
+                displayScrollElement(el);
+            }
+        });
+    };
+    
+    // Inisialisasi pertama
+    handleScrollAnimation();
+    
+    // Event listener
+    window.addEventListener('scroll', () => {
+        handleScrollAnimation();
+    });
+});

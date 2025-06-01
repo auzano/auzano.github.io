@@ -3,6 +3,7 @@
     src: url('../fonts/Batusa.otf') format('opentype');
   }
   
+  
   /* ============ BASE STYLES ============ */
   html, body {
     max-width: 100%;
@@ -419,7 +420,7 @@
     width: 100px;
     height: 100px;
     top: 0;
-    left: 8rem;
+    right: 5rem; /* Gunakan right bukan left */
     z-index: 2;
     opacity: 0;
     transform: rotate(-15deg);
@@ -435,7 +436,7 @@
     width: 100px;
     height: 135px;
     top: 0.5px;
-    left: 12rem;
+    right: -5px; /* Gunakan right bukan left */
     z-index: 2;
     opacity: 0.9;
     transform: rotate(0deg);

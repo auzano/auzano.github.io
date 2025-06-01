@@ -582,30 +582,33 @@
   }
 
 
-    /* Doa Restu */
-    .doa {
-        font-family: 'Batusa', cursive;
-        font-size: 16px;
-        color: white;
-        margin: 0 0 1rem;
-        text-align: center;
-      }
-      
-      .doa-2 {
-        font-family: 'Batusa', cursive;
-        font-size: 15px;
-        color: #977676;
-        margin: 1rem 0 1rem;
-        text-align: center;
-      }
+/* Doa Restu */
+.doa {
+    font-family: 'Batusa', cursive;
+    font-size: 16px;
+    color: white;
+    margin: 0 0 1rem;
+    text-align: center;
+}
 
-      .doa-3 {
-        font-family: 'Batusa', cursive;
-        font-size: 15px;
-        color: #ffffff;
-        margin: 0rem 0 0rem;
-        text-align: center;
-      }
+.doa-2 {
+    font-family: 'Batusa', cursive;
+    font-size: 15px;
+    color: #977676;
+    margin: 1rem 0 1rem;
+    text-align: center;
+}
+
+.doa-3 {
+    font-family: 'Batusa', cursive;
+    font-size: 15px;
+    color: #ffffff;
+    margin: 0rem 0 0rem;
+    text-align: center;
+    transition: color 0.3s ease; /* Efek transisi halus */
+}
+
+      
 
 
 
@@ -744,4 +747,56 @@
 .leaf-decoration.visible {
     opacity: 0.9;
     animation: naturalLeafSway 5s ease-in-out infinite;
+}
+
+
+/* ============ CLOSING SECTION ============ */
+.closing-section {
+  position: relative;
+  width: 100%;
+  height: auto; /* Biarkan tinggi menyesuaikan */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Untuk posisi teks di bawah */
+  min-height: 100%;
+  padding-top: 5rem;
+}
+
+.closing-bg {
+  width: 100%;
+  display: block;
+  position: relative; /* Diubah dari absolute */
+  z-index: 0;
+}
+
+
+.closing-text {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+}
+
+/* Teks styling tetap sama */
+.closing-title {
+  font-family: 'Batusa', cursive;
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+.closing-names {
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.closing-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  opacity: 0.4;
 }

@@ -381,9 +381,37 @@
     text-align: center;
     margin: 0;
   }
+
+  /* Maps Embed */
+.maps-embed {
+    margin: 1rem 0;
+    padding: 0 1rem;
+    margin-top: -15px;
+}
+
+.maps-embed iframe {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
   
+.maps-embed iframe {
+    filter: grayscale(20%) invert(90%) contrast(90%) hue-rotate(180deg);
+    opacity: 0.9;
+}
+
+.maps-embed iframe {
+    filter: grayscale(30%) invert(100%) contrast(85%) hue-rotate(180deg);
+    opacity: 0.95;
+    transition: filter 0.3s ease; /* Smooth hover effect */
+}
+
+.maps-embed iframe:hover {
+    filter: grayscale(0%) invert(0%) contrast(100%); /* Reveals colors on hover for fun */
+}
+
   /* ============ DECORATIONS ============ */
-  .leaf-decoration {
+.leaf-decoration {
     position: absolute;
     background-image: url('../img/leaf.png');
     background-size: contain;
@@ -393,9 +421,11 @@
     top: 0;
     left: 8rem;
     z-index: 2;
-    opacity: 0.9;
+    opacity: 0;
     transform: rotate(-15deg);
-  }
+    transform-origin: center top;
+    transition: opacity 0.8s ease-out;
+}
   
   .flower-decoration {
     position: absolute;
@@ -641,11 +671,6 @@
     transition-delay: 0.8s;
 }
 
-/* Decoration animations */
-.event-section .leaf-decoration.visible,
-.event-section .flower-decoration.visible {
-    animation: fadeInRotate 1s ease-out forwards;
-}
 
 @keyframes fadeInRotate {
     from {
@@ -659,24 +684,7 @@
 }
 
 
-/* ===== DECORATION ANIMATIONS ===== */
-@keyframes gentleSway {
-    0%, 100% {
-        transform: rotate(-3deg) translateY(0);
-    }
-    50% {
-        transform: rotate(3deg) translateY(-5px);
-    }
-}
 
-@keyframes gentleFloat {
-    0%, 100% {
-        transform: translateY(0) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-8px) rotate(2deg);
-    }
-}
 
 .leaf-decoration.visible {
     animation: 
@@ -693,6 +701,21 @@
     animation-delay: 0.3s;
 }
 
+@keyframes flowerSwing {
+    0%, 100% {
+        transform: rotate(-4deg);
+        transform-origin: top left;
+    }
+    50% {
+        transform: rotate(11deg);
+        transform-origin: top left;
+    }
+}
+
+.flower-decoration.visible {
+    animation: flowerSwing 7s ease-in-out infinite;
+}
+
 /* Existing fadeInRotate (keep this) */
 @keyframes fadeInRotate {
     from {
@@ -703,4 +726,22 @@
         opacity: 1;
         transform: rotate(0);
     }
+}
+
+/* ANIMASI DAUN YANG SUDAH DIROTASI -15deg */
+@keyframes naturalLeafSway {
+    0%, 100% {
+        transform: rotate(-4deg); /* Tambahan rotasi Z */
+        transform-origin: top center;
+    }
+    50% {
+        transform: rotate(4deg);
+        transform-origin: top center;
+
+    }
+}
+
+.leaf-decoration.visible {
+    opacity: 0.9;
+    animation: naturalLeafSway 5s ease-in-out infinite;
 }

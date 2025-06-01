@@ -296,27 +296,3 @@ document.addEventListener('DOMContentLoaded', function() {
         handleScrollAnimation();
     });
 });
-
-// hover rekening
-document.querySelectorAll('.copyable').forEach(element => {
-    element.addEventListener('click', function() {
-        const accountNumber = this.getAttribute('data-account');
-        navigator.clipboard.writeText(accountNumber).then(() => {
-            // Ubah warna sementara saat berhasil dicopy
-            const originalColor = this.style.color;
-            this.style.color = '#977676';
-            setTimeout(() => {
-                this.style.color = originalColor;
-            }, 500);
-        });
-    });
-    
-    // Tambahkan cursor pointer dan efek hover
-    element.style.cursor = 'pointer';
-    element.addEventListener('mouseover', function() {
-        this.style.color = '#977676';
-    });
-    element.addEventListener('mouseout', function() {
-        this.style.color = '#ffffff';
-    });
-});

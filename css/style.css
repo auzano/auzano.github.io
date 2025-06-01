@@ -602,10 +602,11 @@
 .doa-3 {
     font-family: 'Batusa', cursive;
     font-size: 15px;
-    color: #ffffff;
+    color: #ffffff !important; /* Warna baru dengan !important */
     margin: 0rem 0 0rem;
     text-align: center;
-    transition: color 0.3s ease; /* Efek transisi halus */
+    text-decoration: none !important; /* Menghilangkan underline jika ada */
+    -webkit-tap-highlight-color: transparent !important; /* Menghilangkan highlight saat tap di mobile */
 }
 
       
